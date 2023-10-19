@@ -29,3 +29,8 @@ https://demo-bank.vercel.app/
     //   },
     // },
     ```
+
+## Usefull commands/methods
+#### Methods
+- .blur(); - usefull to leave an active locator, e.g.  
+`await page.getByTestId('password-input').blur();`
