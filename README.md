@@ -34,3 +34,6 @@ https://demo-bank.vercel.app/
 #### Methods
 - .blur(); - usefull to leave an active locator, e.g.  
 `await page.getByTestId('password-input').blur();`
+- .fill(); - realize focus and fill at the same time, e.g.  
+`await page.getByTestId('login-input').fill('testerLO');`  
+ -runs "click" (focus) on "login-input" element and fill field with data "testerLO"  
