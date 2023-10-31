@@ -30,11 +30,15 @@ test.describe('Pulpit tests', () => {
     );
   });
 
-  test('successful mobile top-up', async ({ page }) => {
+  test.only('successful mobile top-up', async ({ page }) => {
+    //Arrange
     const url = 'https://demo-bank.vercel.app/';
     const userId = 'testerLO';
     const userPassword = '10987654';
+    const expectedSuccessMessage =
+      'Doładowanie wykonane! 50,00PLN na numer 500 xxx xxx';
 
+    //Act
     await page.goto(url);
     await page.getByTestId('login-input').fill(userId);
     await page.getByTestId('password-input').fill(userPassword);
@@ -47,8 +51,9 @@ test.describe('Pulpit tests', () => {
     await page.getByRole('button', { name: 'doładuj telefon' }).click();
     await page.getByTestId('close-button').click();
 
+    //Assert
     await expect(page.locator('#show_messages')).toHaveText(
-      'Doładowanie wykonane! 50,00PLN na numer 500 xxx xxx',
+      expectedSuccessMessage,
     );
   });
 });
