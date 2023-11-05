@@ -24,9 +24,9 @@ test.describe('Pulpit tests', () => {
 
     //Act
     const pulpitPage = new PulpitPage(page);
-    await pulpitPage.transferReceiver.selectOption(receiverId);
-    await pulpitPage.transferAmount.fill(transferAmount);
-    await pulpitPage.transferTitle.fill(transferTitle);
+    await pulpitPage.transferReceiverInput.selectOption(receiverId);
+    await pulpitPage.transferAmountInput.fill(transferAmount);
+    await pulpitPage.transferTitleInput.fill(transferTitle);
     await pulpitPage.transferButton.click();
     await pulpitPage.closeTransferButton.click();
 

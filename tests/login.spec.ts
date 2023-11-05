@@ -22,7 +22,9 @@ test.describe('User login to Demobank', () => {
 
     //Assert
     const pulpitPage = new PulpitPage(page);
-    await expect(pulpitPage.userNameText).toHaveText(expectedUserName);
+    await expect(pulpitPage.sideMenuComponent.userNameText).toHaveText(
+      expectedUserName,
+    );
   });
 
   test('unsuccessful login with too short username', async ({ page }) => {

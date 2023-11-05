@@ -1,9 +1,13 @@
 import { Page } from '@playwright/test';
+import { SideMenuComponent } from '../component/side-menu.component';
 
 export class PulpitPage {
   constructor(private page: Page) {}
+  //side menu
+  sideMenuComponent = new SideMenuComponent(this.page);
+
   //logged user
-  userNameText = this.page.getByTestId('user-name');
+  //userNameText = this.page.getByTestId('user-name');
 
   //messages
   messageAfterAction = this.page.locator('#show_messages');
@@ -12,9 +16,9 @@ export class PulpitPage {
   screenAccountBalance = this.page.locator('#money_value');
 
   //fast transfer
-  transferReceiver = this.page.locator('#widget_1_transfer_receiver');
-  transferAmount = this.page.locator('#widget_1_transfer_amount');
-  transferTitle = this.page.locator('#widget_1_transfer_title');
+  transferReceiverInput = this.page.locator('#widget_1_transfer_receiver');
+  transferAmountInput = this.page.locator('#widget_1_transfer_amount');
+  transferTitleInput = this.page.locator('#widget_1_transfer_title');
   transferButton = this.page.getByRole('button', { name: 'wykonaj' });
   closeTransferButton = this.page.getByTestId('close-button');
 
