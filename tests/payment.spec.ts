@@ -7,7 +7,7 @@ test.describe('Payment tests', () => {
   test.beforeEach(async ({ page }) => {
     const userId = loginData.userId;
     const userPassword = loginData.userPassword;
-    
+
     const loginPage = new LoginPage(page);
     const paymentPage = new PaymentPage(page);
 
@@ -17,7 +17,7 @@ test.describe('Payment tests', () => {
     await loginPage.loginButton.click();
     await paymentPage.paymentTab.click();
   });
-  
+
   test('simple payment', async ({ page }) => {
     // Arrange
     const transferReceiver = 'Jan Nowak';
@@ -30,11 +30,13 @@ test.describe('Payment tests', () => {
     await paymentPage.transferReceiverInput.fill(transferReceiver);
     await paymentPage.trasferAccountInput.fill(transferAccount);
     await paymentPage.transferAmountInput.fill(transferAmount);
-    await paymentPage.submitButton.click();
-    page.waitForLoadState("domcontentloaded");
+    await paymentPage.executeButton.click();
+    page.waitForLoadState('domcontentloaded');
     await paymentPage.closeButton.click();
 
     // Assert
-    await expect(page.locator('#show_messages')).toHaveText(expectedMessage);
+    await expect(paymentPage.transferCorrectMessage).toHaveText(
+      expectedMessage,
+    );
   });
 });
