@@ -6,9 +6,6 @@ export class PulpitPage {
   //side menu
   sideMenuComponent = new SideMenuComponent(this.page);
 
-  //logged user
-  //userNameText = this.page.getByTestId('user-name');
-
   //messages
   messageAfterAction = this.page.locator('#show_messages');
 
