@@ -27,7 +27,7 @@ test.describe('User login to Demobank', () => {
     );
   });
 
-  test('unsuccessful login with too short username', async ({}) => {
+  test('unsuccessful login with too short username', async () => {
     //Arrange
     const incorrectUserId = 'tester';
     const expectedErrorText = 'identyfikator ma min. 8 znaków';
@@ -40,7 +40,7 @@ test.describe('User login to Demobank', () => {
     await expect(loginPage.loginError).toHaveText(expectedErrorText);
   });
 
-  test('unsuccessful login with too short password', async ({ page }) => {
+  test('unsuccessful login with too short password', async () => {
     //Arrange
     const userId = loginData.userId;
     const incorrectPassword = 'tester';
