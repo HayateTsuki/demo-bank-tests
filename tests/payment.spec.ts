@@ -12,12 +12,11 @@ test.describe('Payment tests', () => {
     const userPassword = loginData.userPassword;
 
     paymentPage = new PaymentPage(page);
+    const loginPage = new LoginPage(page);
 
     await page.goto('/');
-    const loginPage = new LoginPage(page);
-    await loginPage.loginInput.fill(userId);
-    await loginPage.passwordInput.fill(userPassword);
-    await loginPage.loginButton.click();
+    await loginPage.login(userId, userPassword);
+
     const pulpitPage = new PulpitPage(page);
     await pulpitPage.sideMenuComponent.paymentLink.click();
   });

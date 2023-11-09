@@ -10,16 +10,14 @@ test.describe('Pulpit tests', () => {
     const userId = loginData.userId;
     const userPassword = loginData.userPassword;
 
+    const loginPage = new LoginPage(page);
     pulpitPage = new PulpitPage(page);
 
     await page.goto('/');
-    const loginPage = new LoginPage(page);
-    await loginPage.loginInput.fill(userId);
-    await loginPage.passwordInput.fill(userPassword);
-    await loginPage.loginButton.click();
+    await loginPage.login(userId, userPassword);
   });
 
-  test('quick payment with correct data', async ({ page }) => {
+  test('quick payment with correct data', async () => {
     //Arrange
     const receiverId = '2';
     const transferAmount = '150';
@@ -39,7 +37,7 @@ test.describe('Pulpit tests', () => {
     );
   });
 
-  test('successful mobile top-up', async ({ page }) => {
+  test('successful mobile top-up', async () => {
     //Arrange
     const topUpReceiver = '500 xxx xxx';
     const topUpAmount = '50';

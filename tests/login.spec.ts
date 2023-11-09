@@ -18,10 +18,7 @@ test.describe('User login to Demobank', () => {
     const expectedUserName = 'Jan Demobankowy';
 
     //Act
-
-    await loginPage.loginInput.fill(userId);
-    await loginPage.passwordInput.fill(userPassword);
-    await loginPage.loginButton.click();
+    await loginPage.login(userId, userPassword);
 
     //Assert
     const pulpitPage = new PulpitPage(page);
@@ -30,7 +27,7 @@ test.describe('User login to Demobank', () => {
     );
   });
 
-  test('unsuccessful login with too short username', async ({ page }) => {
+  test('unsuccessful login with too short username', async ({}) => {
     //Arrange
     const incorrectUserId = 'tester';
     const expectedErrorText = 'identyfikator ma min. 8 znaków';
