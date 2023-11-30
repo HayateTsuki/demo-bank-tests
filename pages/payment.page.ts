@@ -1,15 +1,19 @@
 import { Page } from '@playwright/test';
+import { SideMenuComponent } from '../component/side-menu.component';
 
 export class PaymentPage {
   constructor(private page: Page) {}
 
-  transferReceiverInput = this.page.getByTestId('transfer_receiver');
-  trasferAccountInput = this.page.getByTestId('form_account_to');
-  transferAmountInput = this.page.getByTestId('form_amount');
-  executeButton = this.page.locator('#execute_btn');
-  closeButton = this.page.getByTestId('close-button');
+  sideMenuComponent = new SideMenuComponent(this.page);
 
-  transferCorrectMessage = this.page.locator('#show_messages');
+  transferReceiverInput = this.page.getByTestId('transfer_receiver');
+  transferToInput = this.page.getByTestId('form_account_to');
+  transferAmountInput = this.page.getByTestId('form_amount');
+
+  transferButton = this.page.getByRole('button', { name: 'wykonaj przelew' });
+  actionCloseButton = this.page.getByTestId('close-button');
+
+  messageText = this.page.locator('#show_messages');
 
   async makeTransfer(
     transferReceiver: string,
@@ -17,9 +21,10 @@ export class PaymentPage {
     transferAmount: string,
   ): Promise<void> {
     await this.transferReceiverInput.fill(transferReceiver);
-    await this.trasferAccountInput.fill(transferAccount);
+    await this.transferToInput.fill(transferAccount);
     await this.transferAmountInput.fill(transferAmount);
-    await this.executeButton.click();
-    await this.closeButton.click();
+
+    await this.transferButton.click();
+    await this.actionCloseButton.click();
   }
 }

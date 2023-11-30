@@ -19,6 +19,19 @@ export class PulpitPage {
   transferButton = this.page.getByRole('button', { name: 'wykonaj' });
   closeTransferButton = this.page.getByTestId('close-button');
 
+  async executeQuickPayment(
+    receiverId: string,
+    transferAmount: string,
+    transferTitle: string,
+  ): Promise<void> {
+    await this.transferReceiverInput.selectOption(receiverId);
+    await this.transferAmountInput.fill(transferAmount);
+    await this.transferTitleInput.fill(transferTitle);
+
+    await this.transferButton.click();
+    await this.closeTransferButton.click();
+  }
+
   //mobile top-up
   mobileTopUpReceiver = this.page.locator('#widget_1_topup_receiver');
   mobileTopUpAmount = this.page.locator('#widget_1_topup_amount');
@@ -28,4 +41,16 @@ export class PulpitPage {
   mobileTopUpTransferButton = this.page.getByRole('button', {
     name: 'doładuj telefon',
   });
+
+  async executeMobileTopUp(
+    mobileTopUpReceiver: string,
+    mobileTopUpAmount: string,
+  ): Promise<void> {
+    await this.mobileTopUpReceiver.selectOption(mobileTopUpReceiver);
+    await this.mobileTopUpAmount.fill(mobileTopUpAmount);
+    await this.mobileTopUpAgreementCheckbox.click();
+
+    await this.mobileTopUpTransferButton.click();
+    await this.closeTransferButton.click();
+  }
 }
